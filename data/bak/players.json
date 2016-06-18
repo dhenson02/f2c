@@ -1,0 +1,14 @@
+--2016-01-24 03:42:28--  http://football30.myfantasyleague.com/2015/export?L=45589&TYPE=players&W=&JSON=1
+Resolving football30.myfantasyleague.com (football30.myfantasyleague.com)... 64.73.54.75
+Connecting to football30.myfantasyleague.com (football30.myfantasyleague.com)|64.73.54.75|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘export?L=45589&TYPE=players&W=&JSON=1’
+
+     0K .......... .......... .......... .......... ..........  255K
+    50K .......... .......... .......... .......... ..........  384K
+   100K .......... .......... .......... .......... ..........  660K
+   150K .......... .......... ....                             1.63M=0.4s
+
+2016-01-24 03:42:30 (418 KB/s) - ‘export?L=45589&TYPE=players&W=&JSON=1’ saved [178250]
+

@@ -1,14 +1,17 @@
 {
-  "name": "default-preact",
+  "name": "f2c",
   "version": "0.0.1",
-  "description": "Boilerplate based on default-vanilla but with preact ",
+  "description": "App for myfantasyleague.com FFL management",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf .tmp/* dist/{index.html,css/*,js/*}",
+    "clean": "sh clean.sh && rm -rf dist/{index.html,css/*,js/*}",
     "dist": "npm run clean && npm run js-dist && npm run css-dist && npm run inline-dist",
     "watch": "watchy -w src -- npm run build",
+    "watch-html": "watchy -w src/index.html -- npm run inline",
+    "watch-js": "watchy -w 'src/**/*.js' -- npm run js-dev",
+    "watch-css": "watchy -w 'src/**/*.css' -- npm run css && cp .tmp/styles.css dist/css/styles.css",
     "build": "npm run clean && npm run js-dev && npm run css && cp .tmp/styles.css dist/css/styles.css && npm run inline",
-    "js-dev": "browserify -d -v -t babelify src/js/app.js -o .tmp/app.build.js && npm run js-min",
+    "js-dev": "browserify -d -v -t babelify src/js/app.js -o dist/js/app.js",
     "js-dist": "browserify -v -t babelify -t uglifyify src/js/app.js -o .tmp/app.build.js && npm run js-min dist",
     "js-min": "sh compile-js.sh",
     "css": "postcss --use postcss-import --use autoprefixer src/css/styles.css --output .tmp/styles.css",
@@ -20,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dhenson02/default-preact.git"
+    "url": "https://github.com/dhenson02/f2c.git"
   },
   "keywords": [],
   "author": "Deryck Henson",
@@ -47,14 +50,16 @@
     "watchy": "^0.6.6"
   },
   "dependencies": {
+    "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.3",
     "director": "^1.2.8",
     "event": "github:dhenson02/event",
+    "express": "^4.14.0",
     "fastclick": "^1.0.6",
     "fastdom": "^1.0.2",
     "immutable": "^3.8.1",
     "lodash": "^4.13.1",
     "preact": "^4.8.0",
-    "preact-router": "^2.0.0",
     "request": "^2.72.0",
     "reqwest": "^2.0.5",
     "socket.io": "^1.4.6"
