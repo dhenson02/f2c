@@ -1,0 +1,105 @@
+/* LOADER - thanks! http://codepen.io/adamdoti/pen/qdJjoa */
+
+.loader {
+	will-change: transform;
+	transform: translate3d(-50%, -50%, 1px) rotate(90deg);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 2em;
+}
+
+.loader, .loader div {
+	transform-origin: 50% 50%;
+}
+
+.loader div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.loader:before,
+.loader:after,
+.loader div:before,
+.loader div:after {
+	animation-duration: 1000ms;
+	animation-iteration-count: infinite;
+	content: "";
+	background: #009DDC;
+	border-radius: 100%;
+	width: 0.5em;
+	height: 0.5em;
+	position: absolute;
+}
+
+.loader:before,
+.loader div:before {
+	animation-name: orbBounceBefore;
+	top: -0.25em;
+	left: -0.25em;
+}
+
+.loader:after,
+.loader div:after {
+	animation-name: orbBounceAfter;
+	top: -0.25em;
+	right: -0.25em;
+}
+
+.loader-a {
+	transform: rotate(60deg) translateY(0);
+}
+
+.loader-b {
+	transform: rotate(120deg) translateY(0);
+}
+
+@keyframes orbBounceBefore {
+	60% {
+		transform: translateX(0);
+		animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+	}
+	80% {
+		animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes orbBounceAfter {
+	60% {
+		animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+		transform: translateX(0);
+	}
+	80% {
+		animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
+		transform: translateX(100%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.loader-a:before {
+	animation-delay: 166.66667ms;
+}
+
+.loader-b:before {
+	animation-delay: 333.33333ms;
+}
+
+.loader:after {
+	animation-delay: 500ms;
+}
+
+.loader-a:after {
+	animation-delay: 666.66667ms;
+}
+
+.loader-b:after {
+	animation-delay: 833.33333ms;
+}

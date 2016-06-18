@@ -1,6 +1,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
+const Promise = require('bluebird');
 const request = require('request');
 const config = require('../config.json');
 

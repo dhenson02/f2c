@@ -2,9 +2,10 @@
 
 import { Router } from 'director';
 import { h, render, Component } from 'preact';
+import TeamSelector from './components/TeamSelector';
+// import data from './data';
 /** @jsx h */
 
-import * as store from './data';
 import views from './views';
 
 class RouteManager extends Component {
@@ -25,29 +26,31 @@ class RouteManager extends Component {
         });
         const routes = {
             '/': goHome,
-            '/roster/:id': id => this.setState({
-                'path': 'Roster',
-                id,
-                'week': ''
-            }),
+            '/franchise/:id': {
+                '/roster': {
+                    'on': id => this.setState({
+                        'path': 'Roster'
+                    })
+                },
+                'on': id => this.setState({
+                    'path': 'Franchise',
+                    id
+                })
+            },
             '/scores/:week': week => this.setState({
                 'path': 'LiveScoring',
-                'id': '',
                 week
             }),
             '/players/:week': week => this.setState({
                 'path': 'PlayerList',
-                'id': '',
                 week
             })
         };
         this.router = Router(routes);
         this.router.configure({
             strict: false,
-            notfound () {
-                goHome();
-            }
-            // html5history: true
+            notfound: goHome,
+            html5history: true
         });
         this.router.init();
     }
@@ -59,15 +62,12 @@ class RouteManager extends Component {
     }
 
     render ( props, state ) {
-        console.log(this);
-        let Route = state && views[ state.path ] || null;
+        let Route = views[ state.path ] || null;
+        // let store = data[ state.path ] || null;
         return (
             <div>
-                <pre>{JSON.stringify(this.routes)}</pre>
-                <pre>{JSON.stringify(props)}</pre>
-                <pre>{JSON.stringify(state)}</pre>
-                The route is:
-                <Route {...state}/>
+                <TeamSelector router={this.router} />
+                <Route {...state} />
             </div>
         );
     }

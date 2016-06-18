@@ -1,12 +1,32 @@
 'use strict';
 const express = require('express');
 const bp = require('body-parser');
+const path = require('path');
 const Server = express();
 const server = require('http').createServer(Server);
 
 Server.use(bp.json());
 Server.use(bp.urlencoded({ extended: true }));
 Server.use(express.static('dist'));
+
+Server.use('js/app.js', ( req, res ) => {
+    res.sendFile(path.join(__dirname, 'dist/js/app.js'));
+});
+
+Server.use('css/styles.css', ( req, res ) => {
+    console.log(`styles.css ${req.url}`);
+    res.sendFile(path.join(__dirname, 'dist/css/styles.css'));
+});
+
+Server.use('css/styles:id.css', ( req, res ) => {
+    console.log(`style special ${req.url}`);
+    res.sendFile(path.join(__dirname, `dist/css/styles${req.params.id}.css`));
+});
+
+Server.use('*', ( req, res ) => {
+    console.log(req.url);
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
 const Players = require('./server/build-player-info');
 const Results = require('./server/build-weekly-results');

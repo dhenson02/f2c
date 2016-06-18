@@ -12,15 +12,10 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <style type="text/css">
-@charset "UTF-8";
-
 html {
   font-family: sans-serif;
-  /* 1 */
   -ms-text-size-adjust: 100%;
-  /* 2 */
   -webkit-text-size-adjust: 100%;
-  /* 2 */
 }
 
 body {
@@ -32,8 +27,8 @@ html {
 }
 
 *,
-*:before,
-*:after {
+:after,
+:before {
   box-sizing: inherit;
 }
 
@@ -41,10 +36,13 @@ html {
   margin: 0;
   padding: 0;
   border: 0;
-  outline: 0;
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
+}
+
+* {
+  outline: 0;
 }
 
 html {
@@ -52,30 +50,29 @@ html {
 }
 
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
   font-size: 1.5em;
   line-height: 24px;
-  background: #ffffff;
+  background: #fff;
   color: #202020;
 }
 
 *,
 :after,
 :before {
-  box-sizing: inherit !important;
+  box-sizing: inherit!important;
 }
 
 html {
   overflow-y: scroll;
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: greyscale;
-  zoom: 1;
   *zoom: 1;
   font-size: 100%;
 }
 
-html,
-body {
+body,
+html {
   min-height: 100%;
   min-width: 100%;
 }
@@ -87,16 +84,15 @@ body {
 
 </style>
 <script id="loadcss">
-(function(u,s){!function(e){"use strict";var n=function(n,t,o){var l,r=e.document,i=r.createElement("link");if(t)l=t;else{var a=(r.body||r.getElementsByTagName("head")[0]).childNodes;l=a[a.length-1]}var d=r.styleSheets;i.rel="stylesheet",i.href=n,i.media="only x",l.parentNode.insertBefore(i,t?l:l.nextSibling);var f=function(e){for(var n=i.href,t=d.length;t--;)if(d[t].href===n)return e();setTimeout(function(){f(e)})};return i.onloadcssdefined=f,f(function(){i.media=o||"all"}),i};"undefined"!=typeof module?module.exports=n:e.loadCSS=n}("undefined"!=typeof global?global:this);for(var i in u){loadCSS(u[i],s);}}(['css/styles.css'],document.getElementById("loadcss")));
+(function(u,s){!function(e){"use strict";var n=function(n,t,o){var l,r=e.document,i=r.createElement("link");if(t)l=t;else{var a=(r.body||r.getElementsByTagName("head")[0]).childNodes;l=a[a.length-1]}var d=r.styleSheets;i.rel="stylesheet",i.href=n,i.media="only x",l.parentNode.insertBefore(i,t?l:l.nextSibling);var f=function(e){for(var n=i.href,t=d.length;t--;)if(d[t].href===n)return e();setTimeout(function(){f(e)})};return i.onloadcssdefined=f,f(function(){i.media=o||"all"}),i};"undefined"!=typeof module?module.exports=n:e.loadCSS=n}("undefined"!=typeof global?global:this);for(var i in u){loadCSS(u[i],s);}}(['/css/styles.css'],document.getElementById("loadcss")));
 </script>
 <noscript>
-<link rel="stylesheet" type="text/css" href="css/styles.css">
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
 </noscript>
 </head>
 <body>
 
-    <button type="button" id="clicker">Click Me</button>
     <div id="main"></div>
-    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
 </body>
 </html>
