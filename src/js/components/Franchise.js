@@ -1,5 +1,6 @@
 'use strict';
 
+import Immutable from 'immutable';
 import { h, Component } from 'preact';
 // import ReactPivot from 'react-pivot/load';
 import { franchise, league } from '../data';
@@ -71,18 +72,17 @@ class Team extends Component {
     /*    componentWillReceiveProps ( nextProps ) {
      }*/
 
-   /* shouldComponentUpdate ( nextProps ) {
-        return nextProps.team !== this.props.team;
-    }*/
-
-    handleIconError () {
-        /*this.setState({
-         icon: false
-         });*/
+    shouldComponentUpdate ( nextProps ) {
+        return !Immutable.is(nextProps.team, this.props.team);
     }
 
-    render () {
-        let team = this.props.team;
+    handleIconLoad () {
+        const { style } = this.icon.parentNode;
+        style.visibility = 'visible';
+        style.position = 'relative';
+    }
+
+    render ({ team }) {
         if ( !team || team.size === 0 ) {
             return null;
         }
@@ -99,11 +99,13 @@ class Team extends Component {
         return (
             <div className="jumbotron">
                 <h2>
-                    <span className={iconClass}>
+                    <span className={iconClass}
+                          style={{ 'visibility': 'hidden', 'position': 'absolute' }}>
                         <img className="img-circle"
                              width="48"
                              height="48"
-                             onError={() => this.handleIconError()}
+                             ref={el => this.icon = el}
+                             onLoad={() => this.handleIconLoad()}
                              src={team.get('icon')}/>
                     </span> {team.get('name')}
                 </h2>
@@ -143,8 +145,8 @@ class TeamStats extends Component {
         };
     }
 
-    render () {
-        let stats = this.props.team.get('stats');
+    render ({ team }) {
+        let stats = team.get('stats');
         if ( !stats || stats.size === 0 ) {
             return null;
         }

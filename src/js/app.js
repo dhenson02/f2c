@@ -28,7 +28,7 @@ class RouteManager extends Component {
             '/': goHome,
             '/franchise/:id': {
                 '/roster': {
-                    'on': id => this.setState({
+                    'on': () => this.setState({
                         'path': 'Roster'
                     })
                 },
@@ -66,7 +66,7 @@ class RouteManager extends Component {
         // let store = data[ state.path ] || null;
         return (
             <div>
-                <TeamSelector router={this.router} />
+                <TeamSelector current={state.id} router={this.router} />
                 <Route {...state} />
             </div>
         );
